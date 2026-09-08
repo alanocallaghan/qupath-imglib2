@@ -36,7 +36,7 @@ public class OmeZarrImageServerBuilder implements ImageServerBuilder<BufferedIma
     @Override
     public UriImageSupport<BufferedImage> checkImageSupport(URI uri, String... args) throws IOException {
         float supportLevel = 0f;
-        if (ZarrUtils.isZarr(uri))
+        if (ZarrUtils.isZarr(uri)) {}
             supportLevel = 5f;
         return UriImageSupport.createInstance(
                 OmeZarrImageServerBuilder.class,
@@ -117,6 +117,9 @@ public class OmeZarrImageServerBuilder implements ImageServerBuilder<BufferedIma
 
     private static List<ImageChannel> parseChannels(Omero omero) {
         List<ImageChannel> channels = new ArrayList<>();
+        if (omero.channels == null) {
+            return channels;
+        }
         for (int c = 0; c < omero.channels.size(); c++) {
             var channel = omero.channels.get(c);
             String name = channel.label;
