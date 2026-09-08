@@ -36,7 +36,7 @@ public class OmeZarrImageServerBuilder implements ImageServerBuilder<BufferedIma
     @Override
     public UriImageSupport<BufferedImage> checkImageSupport(URI uri, String... args) throws IOException {
         float supportLevel = 0f;
-        if (ZarrUtils.isZarr(uri)) {}
+        if (ZarrUtils.isZarr(uri))
             supportLevel = 5f;
         return UriImageSupport.createInstance(
                 OmeZarrImageServerBuilder.class,
